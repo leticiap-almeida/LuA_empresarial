@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Orçamentos{% endblock %}
+
+{% block content %}
+<h2>Orçamentos</h2>
+
+<input type="text" placeholder="Pesquisar produtos" style="width: 100%; padding: 12px; margin-bottom: 20px; border: 2px solid black; border-radius: 30px;">
+
+<table>
+    <thead>
+        <tr>
+            <th>Quantidade</th>
+            <th>Descrição</th>
+            <th>V.U</th>
+            <th>V.T</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for produto in produtos %}
+        <tr>
+            <td>1</td>
+            <td>{{ produto.nome }}</td>
+            <td>{{ produto.valor_venda }}</td>
+            <td>{{ produto.valor_venda }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3 style="margin-top: 30px;">Total: R$ 0,00</h3>
+
+<div class="acoes">
+    <button>Informar Cliente</button>
+    <button>Finalizar</button>
+    <button>Imprimir</button>
+</div>
+{% endblock %}
+

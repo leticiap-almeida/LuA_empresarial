@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Gestão Financeira{% endblock %}
+
+{% block content %}
+<h2>Gestão Financeira</h2>
+<p>Bem-vindo ao módulo de gestão financeira. Aqui você poderá controlar receitas, despesas, boletos e análises.</p>
+
+<div class="container" style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 30px;">
+
+    <div style="flex: 1; min-width: 300px; border: 2px solid black; border-radius: 20px; padding: 20px;">
+        <h3>Capital</h3>
+        <div class="form-group">
+            <label>Fonte</label>
+            <input type="text" id="fonte" placeholder="Fonte">
+        </div>
+        <div class="form-group">
+            <label>Valor</label>
+            <input type="number" id="valorCapital" placeholder="Valor">
+        </div>
+        <button onclick="adicionarCapital()">Adicionar</button>
+
+        <table>
+            <thead>
+                <tr><th>Fonte</th><th>Valor</th></tr>
+            </thead>
+            <tbody id="tabelaCapital"></tbody>
+        </table>
+    </div>
+
+   
+    <div style="flex: 1; min-width: 300px; border: 2px solid black; border-radius: 20px; padding: 20px;">
+        <h3>Boletos</h3>
+        <div class="form-group">
+            <label>Empresa</label>
+            <input type="text" id="empresa" placeholder="Empresa">
+        </div>
+        <div class="form-group">
+            <label>Vencimento</label>
+            <input type="date" id="vencimento">
+        </div>
+        <div class="form-group">
+            <label>Valor</label>
+            <input type="number" id="valorBoleto" placeholder="Valor">
+        </div>
+        <button onclick="adicionarBoleto()">Adicionar</button>
+
+        <table>
+            <thead>
+                <tr><th>Empresa</th><th>Vencimento</th><th>Valor</th></tr>
+            </thead>
+            <tbody id="tabelaBoletos"></tbody>
+        </table>
+    </div>
+
+    <div style="flex: 1; min-width: 300px; border: 2px solid black; border-radius: 20px; padding: 20px;">
+        <h3>Análise</h3>
+        <p>Exibir aqui análise de entradas e saídas.</p>
+    
+    </div>
+
+</div>
+
+<script>
+function adicionarCapital() {
+    const fonte = document.getElementById("fonte").value;
+    const valor = document.getElementById("valorCapital").value;
+    if (fonte && valor) {
+        const linha = `<tr><td>${fonte}</td><td>R$ ${parseFloat(valor).toFixed(2)}</td></tr>`;
+        document.getElementById("tabelaCapital").innerHTML += linha;
+        document.getElementById("fonte").value = "";
+        document.getElementById("valorCapital").value = "";
+    }
+}
+
+function adicionarBoleto() {
+    const empresa = document.getElementById("empresa").value;
+    const venc = document.getElementById("vencimento").value;
+    const valor = document.getElementById("valorBoleto").value;
+    if (empresa && venc && valor) {
+        const linha = `<tr><td>${empresa}</td><td>${venc}</td><td>R$ ${parseFloat(valor).toFixed(2)}</td></tr>`;
+        document.getElementById("tabelaBoletos").innerHTML += linha;
+        document.getElementById("empresa").value = "";
+        document.getElementById("vencimento").value = "";
+        document.getElementById("valorBoleto").value = "";
+    }
+}
+</script>
+{% endblock %}

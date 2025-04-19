@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Produto{% endblock %}
+
+{% block content %}
+<h2>Editar Produto</h2>
+<form method="POST">
+    <label>Descrição</label>
+    <input type="text" name="descricao" value="{{ produto.nome }}" required>
+
+    <label>Quantidade</label>
+    <input type="number" name="quantidade" value="{{ produto.quantidade }}" required>
+
+    <label>Unidade</label>
+    <input type="text" name="unidade" value="{{ produto.unidade }}" required>
+
+    <label>Valor de Custo</label>
+    <input type="number" step="0.01" name="valor_custo" value="{{ produto.valor_custo }}" required>
+
+    <label>Valor de Venda</label>
+    <input type="number" step="0.01" name="valor_venda" value="{{ produto.valor_venda }}" required>
+
+    <button type="submit">Salvar Alterações</button>
+</form>
+{% endblock %}

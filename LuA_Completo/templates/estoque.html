@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Estoque{% endblock %}
+
+{% block content %}
+<h2>Estoque</h2>
+
+<a href="{{ url_for('adicionar_produto') }}" class="btn">Adicionar Produto</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Descrição</th>
+            <th>Quantidade</th>
+            <th>Unidade</th>
+            <th>Valor de Custo</th>
+            <th>Valor de Venda</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for produto in produtos %}
+        <tr>
+            <td>{{ produto.id }}</td>
+            <td>{{ produto.nome }}</td>
+            <td>{{ produto.quantidade }}</td>
+            <td>{{ produto.unidade }}</td>
+            <td>{{ produto.valor_custo }}</td>
+            <td>{{ produto.valor_venda }}</td>
+            <td>
+                <a href="{{ url_for('editar_produto', produto_id=produto.id) }}" class="btn">Editar</a>
+                <a href="{{ url_for('excluir_produto', produto_id=produto.id) }}" class="btn">Excluir</a>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="7" style="text-align: center;">Nenhum produto encontrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
